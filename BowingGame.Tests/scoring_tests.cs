@@ -14,8 +14,7 @@ namespace BowingGameScoring.Tests
 
             //Act--do the thing--when
             //20 total rolls in a bowling game
-            for (var i = 0; i < 20; i++)
-                game.Roll(0);
+            game.RollMany(0, 20);
 
             //Assert--check the result--then
             Assert.Equal(0, game.Score);
@@ -26,10 +25,10 @@ namespace BowingGameScoring.Tests
         {
             var game = new BowlingGame();
 
-            for (var i = 0; i < 20; i++)
-                game.Roll(1);
+            game.RollMany(1, 20);
 
             Assert.Equal(20, game.Score);
         }
+
     }
 }

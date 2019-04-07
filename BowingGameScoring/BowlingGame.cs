@@ -14,6 +14,13 @@ namespace BowingGameScoring
         {
             Score += pins;
         }
+
+        //Roll all the frames
+        public void RollMany(int pins, int rolls)
+        {
+            for (var i = 0; i < rolls; i++)
+                Roll(pins);
+        }
         
     }
 }
