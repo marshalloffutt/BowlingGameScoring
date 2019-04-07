@@ -24,7 +24,12 @@ namespace BowingGameScoring.Tests
         [Fact]
         public void test03_can_roll_all_ones()
         {
+            var game = new BowlingGame();
 
+            for (var i = 0; i < 20; i++)
+                game.Roll(1);
+
+            Assert.Equal(20, game.Score);
         }
     }
 }
