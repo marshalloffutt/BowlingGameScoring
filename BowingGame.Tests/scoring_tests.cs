@@ -61,5 +61,15 @@ namespace BowingGameScoring.Tests
             Assert.Equal(22, game.Score);
         }
 
+        [Fact]
+        public void test06_can_roll_perfect_game()
+        {
+            var game = new BowlingGame();
+
+            game.RollMany(10, 12);
+
+            Assert.Equal(300, game.Score);
+        }
+
     }
 }
