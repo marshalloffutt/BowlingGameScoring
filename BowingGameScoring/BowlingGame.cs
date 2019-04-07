@@ -21,36 +21,27 @@ namespace BowingGameScoring
                 //Loop over frames
                 for (var frame = 0; frame < 10; frame++)
                 {
+                    //Check to see if a strike is rolled
+                    if (IsStrike(rollIndex))
+                    {
+                        score += GetStrikeScore(rollIndex);
+                        rollIndex++;
+                    }
                     //Check to see if a spare is rolled
-                    if (IsSpare(rollIndex))
+                    else if (IsSpare(rollIndex))
                     {
                         score += GetSpareScore(rollIndex);
+                        rollIndex += 2;
                     }
                     else
                     {
                         score += GetStandardScore(rollIndex);
+                        rollIndex += 2;
                     }
-
-                    rollIndex += 2;
                 }
 
                 return score;
             }
-        }
-
-        private int GetStandardScore(int rollIndex)
-        {
-            return rolls[rollIndex] + rolls[rollIndex + 1];
-        }
-
-        private int GetSpareScore(int rollIndex)
-        {
-            return rolls[rollIndex] + rolls[rollIndex + 1] + rolls[rollIndex + 2];
-        }
-
-        private bool IsSpare(int rollIndex)
-        {
-            return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
         }
 
         //Need a roll function that returns an integer
@@ -65,6 +56,31 @@ namespace BowingGameScoring
             for (var i = 0; i < rolls; i++)
                 Roll(pins);
         }
-        
+
+        private bool IsStrike(int rollIndex)
+        {
+            return rolls[rollIndex] == 10;
+        }
+
+        private bool IsSpare(int rollIndex)
+        {
+            return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
+        }
+
+        private int GetStrikeScore(int rollIndex)
+        {
+            return rolls[rollIndex] + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+        }
+
+        private int GetSpareScore(int rollIndex)
+        {
+            return rolls[rollIndex] + rolls[rollIndex + 1] + rolls[rollIndex + 2];
+        }
+
+        private int GetStandardScore(int rollIndex)
+        {
+            return rolls[rollIndex] + rolls[rollIndex + 1];
+        }
+
     }
 }

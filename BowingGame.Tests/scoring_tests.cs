@@ -48,5 +48,18 @@ namespace BowingGameScoring.Tests
             Assert.Equal(18, game.Score);
         }
 
+        [Fact]
+        public void test05_can_roll_a_strike()
+        {
+            var game = new BowlingGame();
+
+            game.Roll(10);
+            game.Roll(5);
+            game.Roll(1);
+            game.RollMany(0, 16);
+
+            Assert.Equal(22, game.Score);
+        }
+
     }
 }
